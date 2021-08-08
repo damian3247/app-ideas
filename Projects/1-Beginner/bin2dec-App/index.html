@@ -13,20 +13,26 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            
-                <div class=" form-group">
-                    <label for="nrobinario">Binario: </label>
-                    <input class="form-control" type="number" id="nrobinario" name="nrobinario">
-                </div>
+    <div class="container mb-5">
+        <div class="row text-center mt-5">
+            <h2>Calculadora de Binario a Decimal</h2>
         </div>
-        <div class="row">
-            <div class=" form-group">
-                <label for="nrodecimal">Decimal: </label>
-                <input class="form-control" type="text" id="nrodecimal" name="nrodecimal">
+    </div>
+    <div class="container">
+        <div class="col-4 offset-4 border px-2 py-4">
+            <div class="row mb-2">
+                <label class=" col-2 col-form-label" for="nrobinario">Binario: </label>
+                <div class=" col-10">
+                    <input class="form-control" type="number" id="nrobinario" name="nrobinario" pattern="[01]{8}"
+                        max="1" min="0">
+                </div>
             </div>
-            
+            <div class="row mb-2">
+                <label class="col-2 col-form-label" for="nrodecimal">Decimal: </label>
+                <div class=" col-10">
+                    <input class="form-control" type="text" id="nrodecimal" name="nrodecimal">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -39,6 +45,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+
+    <script>
+        inputBinario = document.getElementById("nrobinario");
+        inputBinario.addEventListener("keyup", function () {
+            for (let indice = 0; indice < inputBinario.value.length; indice++) {
+                const letra = inputBinario.value[indice];
+                console.log(letra)
+                if (letra != 0 && letra != 1) {
+                    inputBinario.value=inputBinario.value.splice(indice,1);
+                }
+            }
+
+            inputDecimal = document.getElementById("nrodecimal")
+            inputDecimal.value = parseInt(inputBinario.value, 3);//(valor, base)
+        })
+    </script>
 </body>
 
 </html>
